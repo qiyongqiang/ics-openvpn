@@ -2,9 +2,6 @@
  * Copyright (c) 2012-2016 Arne Schwabe
  * Distributed under the GNU GPL v2 with additional terms. For full terms see the file doc/LICENSE.txt
  */
-
-import com.android.builder.model.ProductFlavor
-
 apply plugin: 'com.android.application'
 
 apply plugin: 'checkstyle'
@@ -29,14 +26,17 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion 25
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode = 153
         versionName = "0.6.73"
+    }
+    lintOptions {
+        abortOnError false
     }
 
     sourceSets {

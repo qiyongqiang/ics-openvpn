@@ -50,8 +50,8 @@ jobjectArray Java_de_blinkt_openvpn_core_NativeUtils_getIfconfig(JNIEnv* env)
 
     size_t num_intf=ifc.ifc_len / sizeof(struct ifreq);
     jobjectArray ret= (jobjectArray) (*env)->NewObjectArray(env, num_intf*3,(*env)->FindClass(env, "java/lang/String"), NULL);
-
-    for (struct ifreq* ifr = ifc.ifc_req; ifr <   ifs + num_intf; ifr++) {
+    struct ifreq* ifr;
+    for (ifr = ifc.ifc_req; ifr <   ifs + num_intf; ifr++) {
         
         if (ifr->ifr_addr.sa_family != AF_INET)  {
             __android_log_print(ANDROID_LOG_DEBUG, "openvpn", "NOT AF_INET: %s", ifr->ifr_name);
