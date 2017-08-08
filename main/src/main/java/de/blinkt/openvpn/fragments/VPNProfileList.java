@@ -632,7 +632,7 @@ public class VPNProfileList extends ListFragment implements OnClickListener, Vpn
     }
 
     private void startVPN(VpnProfile profile) {
-
+        //通过文件共享方式进程之间共享配置
         getPM().saveProfile(getActivity(), profile);
 
         Intent intent = new Intent(getActivity(), LaunchVPN.class);

@@ -235,14 +235,14 @@ public class OpenVPNService extends VpnService implements StateListener, Callbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             lpNotificationExtras(nbuilder);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            //noinspection NewApi
-            nbuilder.setChannelId(channel);
-            if (mProfile != null)
-             //noinspection NewApi
-            nbuilder.setShortcutId(mProfile.getUUIDString());
-
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            //noinspection NewApi
+//            nbuilder.setChannelId(channel);
+//            if (mProfile != null)
+//             //noinspection NewApi
+//            nbuilder.setShortcutId(mProfile.getUUIDString());
+//
+//        }
 
         if (tickerText != null && !tickerText.equals(""))
             nbuilder.setTicker(tickerText);

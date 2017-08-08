@@ -12,7 +12,6 @@ import android.net.LocalSocketAddress;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.util.Log;
 
 import junit.framework.Assert;
@@ -150,7 +149,6 @@ public class OpenVpnManagementThread implements Runnable, OpenVPNManagement {
             //mServerSocketLocal.close();
 
             while (true) {
-
                 int numbytesread = instream.read(buffer);
                 if (numbytesread == -1)
                     return;
@@ -164,14 +162,9 @@ public class OpenVpnManagementThread implements Runnable, OpenVPNManagement {
                 if (fds != null) {
                     Collections.addAll(mFDList, fds);
                 }
-
                 String input = new String(buffer, 0, numbytesread, "UTF-8");
-
                 pendingInput += input;
-
                 pendingInput = processInput(pendingInput);
-
-
             }
         } catch (IOException e) {
             if (!e.getMessage().equals("socket closed") && !e.getMessage().equals("Connection reset by peer"))
@@ -209,7 +202,7 @@ public class OpenVpnManagementThread implements Runnable, OpenVPNManagement {
 
     private String processInput(String pendingInput) {
 
-
+        Log.d(TAG, "processInput:" + pendingInput);
         while (pendingInput.contains("\n")) {
             String[] tokens = pendingInput.split("\\r?\\n", 2);
             processCommand(tokens[0]);
@@ -224,7 +217,7 @@ public class OpenVpnManagementThread implements Runnable, OpenVPNManagement {
 
 
     private void processCommand(String command) {
-        //Log.i(TAG, "Line from managment" + command);
+        Log.d(TAG, "Line from managment" + command);
 
 
         if (command.startsWith(">") && command.contains(":")) {

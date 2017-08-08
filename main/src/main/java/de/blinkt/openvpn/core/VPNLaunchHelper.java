@@ -6,7 +6,6 @@
 package de.blinkt.openvpn.core;
 
 import android.annotation.TargetApi;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -131,10 +130,10 @@ public class VPNLaunchHelper {
     public static void startOpenVpn(VpnProfile startprofile, Context context) {
         Intent startVPN = startprofile.prepareStartService(context);
         if (startVPN != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                //noinspection NewApi
-                context.startForegroundService(startVPN);
-            else
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//                //noinspection NewApi
+//                context.startForegroundService(startVPN);
+//            else
                 context.startService(startVPN);
 
         }
